@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
+
+@model Admin_Panel.Areas.LOC_City.Models.LOC_CityModel
+
+<div class="d-flex flex-column">
+    <form>
+        @Html.HiddenFor(x=>x.CityID);
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="mt-3 mb-3">
+            <h2>Add / Update Page</h2>
+        </div>
+        <div class="mb-3 row form-group">
+            <label class="col-sm-2 col-form-label">City Name</label>
+            <div class="col-xl-4">
+                <input type="text" class="form-control" asp-for="CityName" />
+                <span asp-validation-for="StateName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">City Code</label>
+            <div class="col-xl-4">
+                <input type="text" class="form-control" asp-for="CityCode" />
+                <span asp-validation-for="CityCode" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Country ID</label>
+            <div class="col-xl-4">
+                <input type="text" class="form-control" asp-for="CountryID" />
+                <span asp-validation-for="CountryID" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">State ID</label>
+            <div class="col-xl-4">
+                <input type="text" class="form-control" asp-for="StateID" />
+                <span asp-validation-for="StateID" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-success" type="submit" asp-area="LOC_City" asp-controller="LOC_City" asp-action="Save">Add</button>
+        </div>
+    </form>
+</div>
+
