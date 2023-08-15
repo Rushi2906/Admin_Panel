@@ -16,4 +16,10 @@ namespace Admin_Panel.Areas.LOC_State.Models
         public DateTime Modified { get; set; }
 
     }
+
+    public class LOC_StateDropDownModel
+    {
+        public int StateID { get; set; }
+        public string? StateName { get; set; }
+    }
 }

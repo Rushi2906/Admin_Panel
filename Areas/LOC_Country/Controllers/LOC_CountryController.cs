@@ -135,5 +135,24 @@ namespace Admin_Panel.Areas.LOC_Country.Controllers
         }
 
         #endregion
+
+        #region Country Search By Name
+
+        public IActionResult LOC_CountrySearchByName(string CountryName)
+        {
+            string connectionStr = this.Configuration.GetConnectionString("myConnectionString");
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(connectionStr);
+            connection.Open();
+            SqlCommand objCmd = connection.CreateCommand();
+            objCmd.CommandType = CommandType.StoredProcedure;
+            objCmd.CommandText = "PR_Country_SelectByCountryName";
+            objCmd.Parameters.AddWithValue("@CountryName", CountryName);
+            SqlDataReader objSDR = objCmd.ExecuteReader();
+            dt.Load(objSDR);
+            return View("LOC_CountryList", dt);
+        }
+
+        #endregion
     }
 }

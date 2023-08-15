@@ -17,9 +17,9 @@
             </a>
         </div>
         <div class="search-field col-xl-4 ms-lg-auto">
-            <form class="d-flex">
-                <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+            <form class="d-flex" method="get" asp-area="LOC_City" asp-controller="LOC_City" asp-action="LOC_CitySearchByName">
+                <div class="me-3"><input class="form-control me-3" type="search" placeholder="Search" aria-label="Search" runat="server" name="CityName" /></div>
+                <div><button type="submit" class="btn btn-outline-success" value="Search" runat="server">Search</button></div>
             </form>
         </div>
     </div>

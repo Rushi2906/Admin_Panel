@@ -14,4 +14,10 @@ namespace Admin_Panel.Areas.LOC_Country.Models
         public DateTime Modified { get; set; }
 
     }
+
+    public class LOC_CountryDropDownModel
+    {
+        public int CountryID { get; set; }
+        public string? CountryName { get; set; }
+    }
 }

@@ -25,17 +25,21 @@
                 <span asp-validation-for="CityCode" class="text-danger"></span>
             </div>
         </div>
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">Country ID</label>
+        <div class="form-group mb-3 row">
+            <label class="col-sm-2 control-label col-form-label">Country Name</label>
             <div class="col-xl-4">
-                <input type="text" class="form-control" asp-for="CountryID" />
+                <select class="form-control" asp-for="CountryID" asp-items="@(new SelectList(ViewBag.CountryList,"CountryID","CountryName"))">
+                    <option value="">Select Country</option>
+                </select>
                 <span asp-validation-for="CountryID" class="text-danger"></span>
             </div>
         </div>
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">State ID</label>
+        <div class="form-group mb-3 row">
+            <label class="col-sm-2 control-label col-form-label">State Name</label>
             <div class="col-xl-4">
-                <input type="text" class="form-control" asp-for="StateID" />
+                <select class="form-control" asp-for="StateID" asp-items="@(new SelectList(ViewBag.StateList,"StateID","StateName"))">
+                    <option value="">Select State</option>
+                </select>
                 <span asp-validation-for="StateID" class="text-danger"></span>
             </div>
         </div>

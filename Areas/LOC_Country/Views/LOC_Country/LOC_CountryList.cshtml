@@ -18,14 +18,10 @@
             </a>
         </div>
         <div class="search-field col-xl-4 ms-lg-auto d-flex">
-            <div class="me-3">
-                <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search" runat="server" name="CountryName" />
-            </div>
-            <div>
-                <a @*asp-area="LOC_Country" asp-controller="LOC_Country" asp-action="LOC_CountrySearchByName"*@>
-                    <input type="button" class="btn btn-outline-success" value="search"/>
-                </a>
-            </div>
+            <form class="d-flex" method="get" asp-area="LOC_Country" asp-controller="LOC_Country" asp-action="LOC_CountrySearchByName">
+                <div class="me-3"><input class="form-control me-3" type="search" placeholder="Search" aria-label="Search" runat="server" name="CountryName" /></div>
+                <div><button type="submit" class="btn btn-outline-success" value="Search" runat="server">Search</button></div>
+            </form>
         </div>
     </div>
     <table class="table mt-3">
