@@ -144,24 +144,5 @@ namespace Admin_Panel.Areas.LOC_State.Controllers
         }
 
         #endregion
-
-        #region State Search By Name
-
-        public IActionResult LOC_StateSearchByName(string StateName)
-        {
-            string connectionStr = this.Configuration.GetConnectionString("myConnectionString");
-            DataTable dt = new DataTable();
-            SqlConnection connection = new SqlConnection(connectionStr);
-            connection.Open();
-            SqlCommand objCmd = connection.CreateCommand();
-            objCmd.CommandType = CommandType.StoredProcedure;
-            objCmd.CommandText = "PR_State_SelectByStateName";
-            objCmd.Parameters.AddWithValue("@SName", StateName);
-            SqlDataReader objSDR = objCmd.ExecuteReader();
-            dt.Load(objSDR);
-            return View("LOC_StateList", dt);
-        }
-
-        #endregion
     }
 }
