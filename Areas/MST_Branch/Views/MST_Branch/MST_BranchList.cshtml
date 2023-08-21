@@ -12,15 +12,14 @@
     </div>
     <div class="table-header d-flex">
         <div class="add-button mr-auto">
-            <a asp-area="LOC_State" asp-controller="LOC_State" asp-action="LOC_StateAdd">
+            <a asp-area="MST_Branch" asp-controller="MST_Branch" asp-action="MST_BranchAdd">
                 <input type="button" class="btn btn-success" value="Add New Record" />
             </a>
         </div>
-        <div class="search-field col-xl-4 ms-lg-auto">
-            <form class="d-flex">
-                <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+        <div class="pull-right col-xl-4 ms-lg-auto">
+            <div id="sample_1_filter" class="dataTables_filter">
+                <input type="text" class="form-control input-group-sm input-small input-inline" id="sample_1" placeholder="Search" aria-controls="sample_1">
+            </div>
         </div>
     </div>
     <table class="table mt-3">
@@ -34,7 +33,7 @@
                 <th scope="col">Action</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="sample_2">
             @foreach (DataRow dr in Model.Rows)
             {
                 <tr>
@@ -46,14 +45,14 @@
                     <td>
                         <div class="d-flex">
                             <div class="me-2">
-                                <form>
-                                    <input type="hidden" value="@Convert.ToInt32(dr["BranchID"])" name="StateID" />
+                                <form method="post" asp-area="MST_Branch" asp-controller="MST_Branch" asp-action="MST_BranchDelete">
+                                    <input type="hidden" value="@Convert.ToInt32(dr["BranchID"])" name="BranchID" />
                                     <button type="submit" class="btn btn-danger" value="Delete">Delete</button>
                                 </form>
                             </div>
                             <div class="ms-2">
-                                <form asp-area="LOC_State" asp-controller="LOC_State" asp-action="LOC_StateAdd">
-                                    <input type="hidden" value="@Convert.ToInt32(dr["BranchID"])" name="StateID" />
+                                <form asp-area="MST_Branch" asp-controller="MST_Branch" asp-action="MST_BranchAdd">
+                                    <input type="hidden" value="@Convert.ToInt32(dr["BranchID"])" name="BranchID" />
                                     <button type="submit" class="btn btn-info" value="Update">Update</button>
                                 </form>
                             </div>
@@ -64,6 +63,19 @@
         </tbody>
     </table>
 </div>
+@section Scripts
+    {
+    <script>
+        $(document).ready(function () {
+            $("#sample_1").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#sample_2 tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+}
 
 
 

@@ -15,12 +15,16 @@ namespace Admin_Panel.Areas.LOC_State.Controllers
             return View();
         }
 
+        #region Configuration
+
         private readonly IConfiguration Configuration;
 
         public LOC_StateController(IConfiguration _Configuration)
         {
             Configuration = _Configuration;
         }
+
+        #endregion
 
         #region State List
 

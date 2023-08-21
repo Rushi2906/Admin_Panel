@@ -10,9 +10,7 @@
     <Folder Include="Areas\LOC_Country\Data\" />
     <Folder Include="Areas\LOC_State\Data\" />
     <Folder Include="Areas\MST_Branch\Data\" />
-    <Folder Include="Areas\MST_Branch\Models\" />
     <Folder Include="Areas\MST_Student\Data\" />
-    <Folder Include="Areas\MST_Student\Models\" />
   </ItemGroup>
 
   <ItemGroup>

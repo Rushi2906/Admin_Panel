@@ -16,12 +16,16 @@ namespace Admin_Panel.Areas.LOC_Country.Controllers
             return View();
         }
 
+        #region Configuration
+
         private readonly IConfiguration Configuration;
 
         public LOC_CountryController(IConfiguration _Configuration)
         {
             Configuration = _Configuration;
         }
+
+        #endregion
 
         #region Country List
 
@@ -38,27 +42,6 @@ namespace Admin_Panel.Areas.LOC_Country.Controllers
             dt.Load(objSDR);
             return View("LOC_CountryList",dt);
         }
-
-        #endregion
-
-        #region Country_SelectByName
-
-        //public IActionResult LOC_CountrySearchByName(string? CountryName)
-        //{
-        //    string connectionStr = this.Configuration.GetConnectionString("myConnectionString");
-        //    DataTable dt = new DataTable();
-        //    SqlConnection connection = new SqlConnection(connectionStr);
-        //    connection.Open();
-        //    SqlCommand objCmd = connection.CreateCommand();
-        //    objCmd.CommandType = CommandType.StoredProcedure;
-        //    objCmd.CommandText = "PR_Country_SelectByCountryName";
-        //    objCmd.Parameters.AddWithValue("@CountryName", CountryName);
-        //    objCmd.ExecuteNonQuery();
-        //    SqlDataReader objSDR = objCmd.ExecuteReader();
-        //    dt.Load(objSDR);
-        //    connection.Close();
-        //    return View("LOC_CountryList", dt);
-        //}
 
         #endregion
 

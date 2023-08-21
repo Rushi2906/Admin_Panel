@@ -16,12 +16,16 @@ namespace Admin_Panel.Areas.LOC_City.Controllers
             return View();
         }
 
+        #region Configuration
+        
         private readonly IConfiguration Configuration;
 
         public LOC_CityController(IConfiguration _Configuration)
         {
             Configuration = _Configuration;
         }
+
+        #endregion
 
         #region City List
 
@@ -89,7 +93,6 @@ namespace Admin_Panel.Areas.LOC_City.Controllers
 
         public IActionResult LOC_CityAdd(int? CityID)
         {
-            Console.WriteLine("hyyy");
             string connectionStr = this.Configuration.GetConnectionString("myConnectionString");
 
             #region Country DropDown
