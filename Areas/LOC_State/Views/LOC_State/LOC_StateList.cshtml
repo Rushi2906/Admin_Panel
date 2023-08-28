@@ -1,16 +1,48 @@
 ﻿@{
     Layout = "~/Views/shared/_Layout.cshtml";
+    LOC_StateFilterModel filterModel = new LOC_StateFilterModel();
 }
 
 @using System.Data;
 @model DataTable;
+@using Admin_Panel.Areas.LOC_State.Models;
 
 
 <div class="body">
     <div class="d-flex mt-3 mb-3">
         <h3>State List</h3>
     </div>
-    <div class="table-header d-flex">
+    <div class="container-fluid border border-dark p-4">
+        <form class="row">
+            <div><h2>Filter</h2></div>
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group col-4">
+                <label class="form-label">Country Name</label>
+                <div class="">
+                    <select class="form-control" asp-for="@filterModel.CountryID" asp-items="@(new SelectList(ViewBag.CountryList,"CountryID","CountryName"))">
+                        <option value="">Select Country</option>
+                    </select>
+                    <span asp-validation-for="@filterModel.CountryID" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-4">
+                <lable class="form-label">Select Statename</lable>
+                <input type="text" placeholder="Select Statename" asp-for="@filterModel.StateName" class="form-control mt-2" id="inputAddress">
+            </div>
+            <div class="col-4">
+                <lable class="form-label">Select Statecode</lable>
+                <input type="text" placeholder="Select statecode" asp-for="@filterModel.StateCode" class="form-control mt-2" id="inputAddress">
+            </div>
+            <div class="col my-2">
+                <button type="submit" class="btn btn-primary" asp-area="LOC_State" asp-controller="LOC_State" asp-action="LOC_StateFilter">
+                    Search
+                </button>
+                <button type="submit" class="btn btn-danger">clear</button>
+            </div>
+        </form>
+    </div>
+    <div class="table-header d-flex mt-3">
         <div class="add-button mr-auto">
             <a asp-area="LOC_State" asp-controller="LOC_State" asp-action="LOC_StateAdd">
                 <input type="button" class="btn btn-success" value="Add New Record" />
