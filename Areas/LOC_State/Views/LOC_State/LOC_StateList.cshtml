@@ -38,8 +38,10 @@
                 <button type="submit" class="btn btn-primary" asp-area="LOC_State" asp-controller="LOC_State" asp-action="LOC_StateFilter">
                     Search
                 </button>
-                <button type="submit" class="btn btn-danger">clear</button>
             </div>
+        </form>
+        <form>
+            <button type="submit" class="btn btn-danger" runat="server" OnClientClick="this.form.reset();return false;">clear</button>
         </form>
     </div>
     <div class="table-header d-flex mt-3">

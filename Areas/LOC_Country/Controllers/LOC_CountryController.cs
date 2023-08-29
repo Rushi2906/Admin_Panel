@@ -1,5 +1,6 @@
 ﻿using Admin_Panel.Areas.LOC_Country.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration;
 using System.Configuration;
 using System.Data;
@@ -115,6 +116,27 @@ namespace Admin_Panel.Areas.LOC_Country.Controllers
             {
                 return View("LOC_CountryAdd");
             }
+        }
+
+        #endregion
+
+        #region Filter
+
+        public IActionResult LOC_CountryFilter(LOC_CountryFilterModel filterModel)
+        {
+            string connectionStr = this.Configuration.GetConnectionString("myConnectionString");
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(connectionStr);
+            connection.Open();
+            SqlCommand objCmd = connection.CreateCommand();
+            objCmd.CommandType = CommandType.StoredProcedure;
+            objCmd.CommandText = "PR_Country_filter";
+            objCmd.Parameters.AddWithValue("@CountryName", filterModel.CountryName);
+            objCmd.Parameters.AddWithValue("@CountryCode", filterModel.CountryCode);
+            SqlDataReader objSDR = objCmd.ExecuteReader();
+            dt.Load(objSDR);
+            ModelState.Clear();
+            return View("LOC_CountryList", dt);
         }
 
         #endregion

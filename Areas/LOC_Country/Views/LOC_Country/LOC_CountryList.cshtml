@@ -1,9 +1,11 @@
 ﻿@{
     Layout="~/Views/shared/_Layout.cshtml";
+    LOC_CountryFilterModel filterModel = new LOC_CountryFilterModel();
 }
 
 @using System.Data;
 @model DataTable;
+@using Admin_Panel.Areas.LOC_Country.Models;
 
 
 
@@ -11,6 +13,27 @@
     <div class="d-flex mt-3 mb-3">
         <h3>Country List</h3>
     </div>
+    <form class="row">
+        <div><h2>Filter</h2></div>
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="col-6">
+            <lable class="form-label">Select CountryName</lable>
+            <input type="text" placeholder="Select CountryName" asp-for="@filterModel.CountryName" class="form-control mt-2" id="inputAddress">
+        </div>
+        <div class="col-6">
+            <lable class="form-label">Select CountryCode</lable>
+            <input type="text" placeholder="Select CountryCode" asp-for="@filterModel.CountryCode" class="form-control mt-2" id="inputAddress">
+        </div>
+        <div class="col my-2">
+            <button type="submit" class="btn btn-primary" asp-area="LOC_Country" asp-controller="LOC_Country" asp-action="LOC_CountryFilter">
+                Search
+            </button>
+        </div>
+    </form>
+    <form>
+        <button type="submit" class="btn btn-danger" runat="server" OnClientClick="this.form.reset();return false;">clear</button>
+    </form>
     <div class="table-header d-flex">
         <div class="add-button mr-auto">
             <a asp-area="LOC_Country" asp-controller="LOC_Country" asp-action="LOC_CountryAdd">
