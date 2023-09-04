@@ -4,7 +4,9 @@ Alter PROC PR_Country_filter
 AS
 	Select [dbo].[LOC_Country].[CountryID],
 			[dbo].[LOC_Country].[CountryName],
-		   [dbo].[LOC_Country].[CountryCode]
+		   [dbo].[LOC_Country].[CountryCode],
+		   [dbo].[LOC_Country].[Created],
+		   [dbo].[LOC_Country].[Modified]
 	FROM [dbo].[LOC_Country]
 	Where (
 		(@CountryName IS NULL OR CountryName LIKE CONCAT('%',@CountryName,'%')) AND
