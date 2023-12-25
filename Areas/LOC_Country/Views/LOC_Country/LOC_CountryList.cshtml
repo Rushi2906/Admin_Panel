@@ -52,6 +52,9 @@
                 <th scope="col">CountryID</th>
                 <th scope="col">CountryName</th>
                 <th scope="col">CountryCode</th>
+                <th scope="col">State Count</th>
+                <th scope="col">City Count</th>
+                <th scope="col">User ID</th>
                 <th scope="col">Created</th>
                 <th scope="col">Modified</th>
                 <th scope="col">Action</th>
@@ -64,6 +67,11 @@
                     <td>@dr["CountryID"]</td>
                     <td>@dr["CountryName"]</td>
                     <td>@dr["CountryCode"]</td>
+                    <td>
+                        <a asp-area="LOC_State" asp-controller="LOC_State" asp-action="LOC_StateList" asp-route-CountryID="@Convert.ToInt32(dr["CountryID"])">@dr["STATE"]</a>
+                    </td>
+                    <td>@dr["CITY"]</td>
+                    <td>@dr["UserID"]</td>
                     <td>@Convert.ToDateTime(dr["Created"]).ToString("dd-MM-yyyy")</td>
                     <td>@Convert.ToDateTime(dr["Modified"]).ToString("dd-MM-yyyy")</td>
                     <td>

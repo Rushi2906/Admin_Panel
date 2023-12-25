@@ -19,8 +19,9 @@ namespace Admin_Panel.Areas.LOC_State.Models
 
     public class LOC_StateDropDownModel
     {
-        public int StateID { get; set; }
-        public string StateName { get; set; }
+        public int? CountryID { get; set; }
+        public int? StateID { get; set; }
+        public string? StateName { get; set; }
     }
 
     public class LOC_StateFilterModel

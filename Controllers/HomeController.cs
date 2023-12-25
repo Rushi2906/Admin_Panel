@@ -1,9 +1,11 @@
-﻿using Admin_Panel.Models;
+﻿using Admin_Panel.BAL;
+using Admin_Panel.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace Admin_Panel.Controllers
 {
+    [CheckAccess]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

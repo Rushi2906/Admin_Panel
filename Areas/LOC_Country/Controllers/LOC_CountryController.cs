@@ -1,4 +1,5 @@
 ﻿using Admin_Panel.Areas.LOC_Country.Models;
+using Admin_Panel.BAL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +11,7 @@ namespace Admin_Panel.Areas.LOC_Country.Controllers
 {
     [Area("LOC_Country")]
     [Route("LOC_Country/[controller]/[action]")]
+    [CheckAccess]
     public class LOC_CountryController : Controller
     {
         public IActionResult Index()
@@ -34,13 +36,16 @@ namespace Admin_Panel.Areas.LOC_Country.Controllers
         {
             string connectionStr = this.Configuration.GetConnectionString("myConnectionString");
             DataTable dt = new DataTable();
+            Console.WriteLine(CommonVariable.UserID);
             SqlConnection connection = new SqlConnection(connectionStr);
             connection.Open();
             SqlCommand objCmd = connection.CreateCommand();
             objCmd.CommandType = CommandType.StoredProcedure;
             objCmd.CommandText = "PR_Country_SelectAll";
+            objCmd.Parameters.AddWithValue("@UserID", CommonVariable.UserID());
             SqlDataReader objSDR = objCmd.ExecuteReader();
             dt.Load(objSDR);
+            Console.WriteLine(dt.Rows.Count);
             return View("LOC_CountryList",dt);
         }
 
@@ -140,5 +145,7 @@ namespace Admin_Panel.Areas.LOC_Country.Controllers
         }
 
         #endregion
+
+        
     }
 }

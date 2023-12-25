@@ -63,6 +63,7 @@
                 <th scope="col">StateName</th>
                 <th scope="col">StateCode</th>
                 <th scope="col">CountryName</th>
+                <th scope="col">City Count</th>
                 <th scope="col">Created</th>
                 <th scope="col">Modified</th>
                 <th scope="col">Action</th>
@@ -76,6 +77,7 @@
                     <td>@dr["StateName"]</td>
                     <td>@dr["StateCode"]</td>
                     <td>@dr["CountryName"]</td>
+                    <td>@dr["CITY"]</td>
                     <td>@Convert.ToDateTime(dr["Created"]).ToString("dd-MM-yyyy")</td>
                     <td>@Convert.ToDateTime(dr["Modified"]).ToString("dd-MM-yyyy")</td>
                     <td>

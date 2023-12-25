@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Admin_Panel.BAL
+
+@using Admin_Panel.Areas.SEC_User.Models;
+@model SEC_UserModel
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -35,6 +40,8 @@
                             <a class="nav-link" asp-area="MST_Student" asp-action="MST_StudentList" asp-controller="MST_Student">Student</a>
                         </li>
                     </ul>
+                    @*<img src="@Model.PhotoPath" height="20" width="20"/>*@
+                    <a asp-area="SEC_User" asp-controller="SEC_User" asp-action="Logout">Log Out</a>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>

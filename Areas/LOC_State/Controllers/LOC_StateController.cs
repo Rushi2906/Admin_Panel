@@ -30,10 +30,9 @@ namespace Admin_Panel.Areas.LOC_State.Controllers
 
         #region State List
 
-        public IActionResult LOC_StateList()
+        public IActionResult LOC_StateList(int? CountryID)
         {
             string connectionStr = this.Configuration.GetConnectionString("myConnectionString");
-
 
             #region Country DropDown
             SqlConnection connection1 = new SqlConnection(connectionStr);
@@ -60,13 +59,21 @@ namespace Admin_Panel.Areas.LOC_State.Controllers
             #endregion
 
 
-
+            Console.WriteLine("ID" + CountryID);
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(connectionStr);
             connection.Open();
             SqlCommand objCmd = connection.CreateCommand();
             objCmd.CommandType = CommandType.StoredProcedure;
-            objCmd.CommandText = "PR_State_SelectAll";
+            if(CountryID == null)
+            {
+                objCmd.CommandText = "PR_State_SelectAll";
+            }
+            else
+            {
+                objCmd.CommandText = "PR_COUNTRY_COUNTBYIDTOSTATE";
+                objCmd.Parameters.AddWithValue("@CountryID", CountryID);
+            }
             SqlDataReader objSDR = objCmd.ExecuteReader();
             dt.Load(objSDR);
             return View("LOC_StateList", dt);
@@ -230,6 +237,25 @@ namespace Admin_Panel.Areas.LOC_State.Controllers
             #endregion
 
             return View("LOC_StateList",dt);
+        }
+
+        #endregion
+
+        #region CountryToStateOnClickCount
+
+        public IActionResult CountryToStateOnClickCount(int CountryID)
+        {
+            string connectionStr = this.Configuration.GetConnectionString("myConnectionString");
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(connectionStr);
+            connection.Open();
+            SqlCommand objCmd = connection.CreateCommand();
+            objCmd.CommandType = CommandType.StoredProcedure;
+            objCmd.CommandText = "PR_COUNTRY_COUNTBYIDTOSTATE";
+            objCmd.Parameters.AddWithValue("@CountryID", CountryID);
+            SqlDataReader objSDR = objCmd.ExecuteReader();
+            dt.Load(objSDR);
+            return View("LOC_StateList", dt);
         }
 
         #endregion

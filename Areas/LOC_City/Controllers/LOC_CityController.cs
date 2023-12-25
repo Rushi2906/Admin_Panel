@@ -4,6 +4,7 @@ using System.Data;
 using Admin_Panel.Areas.LOC_City.Models;
 using Admin_Panel.Areas.LOC_State.Models;
 using Admin_Panel.Areas.LOC_Country.Models;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 namespace Admin_Panel.Areas.LOC_City.Controllers
 {
@@ -270,7 +271,7 @@ namespace Admin_Panel.Areas.LOC_City.Controllers
         #endregion
 
         #region FILTER
-        public IActionResult LOC_CityFilter(LOC_CityFilterModel FilterModel)
+        public IActionResult LOC_CityFilter(LOC_CityFilterModel FilterModel,int? CountryID)
         {
             string connectionStr = this.Configuration.GetConnectionString("myConnectionString");
 
@@ -305,7 +306,8 @@ namespace Admin_Panel.Areas.LOC_City.Controllers
             connection2.Open();
             SqlCommand objCmd2 = connection2.CreateCommand();
             objCmd2.CommandType = CommandType.StoredProcedure;
-            objCmd2.CommandText = "PR_State_ComboBox2";
+            objCmd2.CommandText = "PR_State_ComboBox";
+            objCmd2.Parameters.AddWithValue("@CountryID", CountryID);
             SqlDataReader reader2 = objCmd2.ExecuteReader();
             DataTable dt2 = new DataTable();
             dt2.Load(reader2);
