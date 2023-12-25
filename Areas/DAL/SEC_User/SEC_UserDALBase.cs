@@ -7,11 +7,16 @@ namespace Admin_Panel.Areas.DAL.SEC_User
 {
     public class SEC_UserDALBase : DAL_Helper
     {
+
+        #region PhotoFile Upload
+
         private readonly IWebHostEnvironment _webHostEnvironment;
         public SEC_UserDALBase(IWebHostEnvironment webHostEnvironment)
         {
             _webHostEnvironment = webHostEnvironment;
         }
+
+        #endregion
 
         #region Method: dbo_PR_SEC_User_SelectByPK
         public DataTable dbo_PR_SEC_User_SelectByUserNamePassword(string UserName, string Password)
@@ -57,6 +62,7 @@ namespace Admin_Panel.Areas.DAL.SEC_User
                 }
                 else
                 {
+                    // For Upload and get Photo into Database
                     if (userModel.CoverPhoto != null)
                     {
                         string folder = "user/photos/";
